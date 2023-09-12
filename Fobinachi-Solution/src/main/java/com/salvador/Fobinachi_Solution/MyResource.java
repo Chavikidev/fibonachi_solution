@@ -1,8 +1,12 @@
 package com.salvador.Fobinachi_Solution;
 
+import com.salvador.Fobinachi_Solution.fibonachiCalc.FibonachiCalculation;
+
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 
 /**
@@ -18,7 +22,22 @@ public class MyResource {
      * @return String that will be returned as a text/plain response.
      */
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_HTML)
+    public String getExponetial(@QueryParam("index") int index) {
+    	
+    	try {
+    		
+    	}catch(Exception e) {
+    		System.out.println(e.getMessage());
+    		e.printStackTrace();
+    	}
+    	int reslut=FibonachiCalculation.generateFibonachiSeries(index);
+
+        return "<p>Your result to index: "+index +  " is -> "+reslut+"</><br><a href=\"../\">Regresar</>";
+    }
+    
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
     public String getIt() {
         return "Got it!";
     }
