@@ -1,7 +1,9 @@
 package com.salvador.Fobinachi_Solution;
 
 import com.salvador.Fobinachi_Solution.fibonachiCalc.FibonachiCalculation;
+import com.salvador.Fobinachi_Solution.fibonachiCalc.FibonachiPostDao;
 
+import jakarta.ws.rs.BeanParam;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -9,6 +11,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -40,13 +43,18 @@ public class MyResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String getIt(FibonachiCalculation fibCalc) {
-try {
-	fibCalc.getIndex();
+    public Response getIt(FibonachiPostDao fibCalc) {
+    	int reslut=0;
+    	System.out.println(fibCalc.toString());
+    	try {
+    		int index=fibCalc.getIndexParam();
+    		reslut=FibonachiCalculation.generateFibonachiSeries(index);
     	}catch(Exception e) {
     		System.out.println(e.getMessage());
     		e.printStackTrace();
     	}
-    	int reslut=FibonachiCalculation.generateFibonachiSeries(index);
+    	return Response.ok("{ \"fobinachi\":"+reslut+"}").build();
+    	
     }
+    
 }

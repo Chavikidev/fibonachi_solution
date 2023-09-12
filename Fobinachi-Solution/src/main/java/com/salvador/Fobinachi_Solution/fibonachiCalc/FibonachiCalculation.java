@@ -2,7 +2,7 @@ package com.salvador.Fobinachi_Solution.fibonachiCalc;
 
 public final class FibonachiCalculation {
 
-	private static int _index=0;
+	private static int index=0;
 
 	/**
 	 * 
@@ -16,20 +16,20 @@ public final class FibonachiCalculation {
 	 */
 	public FibonachiCalculation(int index) {
 		super();
-		this._index = index;
+		this.index = index;
 	}
 
 	public int getIndex() {
-		return _index;
+		return index;
 	}
 
 	public void setIndex(int index) {
-		this._index = index;
+		this.index = index;
 	}
 	
 	public static int generateFibonachiSeries(int indexFib) {
 		int beforeVal=0;
-		_index=indexFib;
+		index=indexFib;
 		int retIntFibonachi=0;
 		try {
 
